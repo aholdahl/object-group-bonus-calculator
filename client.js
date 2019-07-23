@@ -81,3 +81,4 @@ function EmployeeBonus(i) {
 for (i = 0; i < employees.length; i++) {
   console.log(new EmployeeBonus(i));
 }
+
