@@ -1,5 +1,4 @@
-const employees = [
-  {
+const employees = [{
     name: 'Atticus',
     employeeNumber: '2405',
     annualSalary: '47000',
@@ -40,4 +39,46 @@ const employees = [
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
 
-console.log( employees );
+console.log(employees);
+
+
+function getBonusPercentage(i) {
+
+  if (employees[i].reviewRating <= 2) {
+    employees[i].bonusPercentage = 0
+  } else if (employees[i].reviewRating === 3) {
+    employees[i].bonusPercentage = .04
+  } else if (employees[i].reviewRating === 4) {
+    employees[i].bonusPercentage = .06
+  } else if (employees[i].reviewRating === 5) {
+    employees[i].bonusPercentage = .10
+  }//end merit bonus
+  if (employees[i].employeeNumber.length == 4) {
+    employees[i].bonusPercentage += .05
+  }//end tenur bonus
+  if (Number(employees[i].annualSalary) > 65000) {
+    employees[i].bonusPercentage -= .01
+  }//end salary-based bonus decrease
+  if (employees[i].bonusPercentage > .13) {
+    employees[i].bonusPercentage = .13;
+  }//end bonus max
+  if (employees[i].bonusPercentage < 0) {
+      employees[i].bonusPercentage = 0;
+    } //end bonus min
+    return employees[i].bonusPercentage
+  }//end getBonusPercentage
+
+console.log(getBonusPercentage(2));
+
+// let totalBonus = employees.annualSalary * bonusPercentage; 
+
+//create new object
+// function EmployeeBonus(i) {
+//   this.name = employees[i].name;
+//   this.bonusPercentage = getBonusPercentage(i);//based on merit and tenure, max and min
+//   this.totalBonus = Number(employees[i].annualSalary) * employees[i].bonusPercentage
+//   this.totalCompensation = Number(employees[i].annualSalary) + totalBonus
+// }
+
+
+// let realAtticus = new EmployeeBonus(employees[0]);
