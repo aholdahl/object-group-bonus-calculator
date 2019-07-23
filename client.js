@@ -41,7 +41,7 @@ const employees = [{
 
 console.log(employees);
 
-
+//Individual Bonus Calcuation
 function getBonusPercentage(i) {
 
   if (employees[i].reviewRating <= 2) {
@@ -69,14 +69,15 @@ function getBonusPercentage(i) {
 } //end getBonusPercentage
 
 
-//create new object
+//Function Logic
 function EmployeeBonus(i) {
   this.name = employees[i].name;
   this.bonusPercentage = getBonusPercentage(i); //based on merit and tenure, max and min
-  this.totalBonus = Number(employees[i].annualSalary) * employees[i].bonusPercentage
+  this.totalBonus = Math.round(Number(employees[i].annualSalary) * employees[i].bonusPercentage)
   this.totalCompensation = Number(employees[i].annualSalary) + this.totalBonus
 } //end EmployeeBonus
 
+//Processing Employee Bonuses
 for (i = 0; i < employees.length; i++) {
   console.log(new EmployeeBonus(i));
 }
