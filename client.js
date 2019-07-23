@@ -52,33 +52,31 @@ function getBonusPercentage(i) {
     employees[i].bonusPercentage = .06
   } else if (employees[i].reviewRating === 5) {
     employees[i].bonusPercentage = .10
-  }//end merit bonus
+  } //end merit bonus
   if (employees[i].employeeNumber.length == 4) {
     employees[i].bonusPercentage += .05
-  }//end tenur bonus
+  } //end tenur bonus
   if (Number(employees[i].annualSalary) > 65000) {
     employees[i].bonusPercentage -= .01
-  }//end salary-based bonus decrease
+  } //end salary-based bonus decrease
   if (employees[i].bonusPercentage > .13) {
     employees[i].bonusPercentage = .13;
-  }//end bonus max
+  } //end bonus max
   if (employees[i].bonusPercentage < 0) {
-      employees[i].bonusPercentage = 0;
-    } //end bonus min
-    return employees[i].bonusPercentage
-  }//end getBonusPercentage
+    employees[i].bonusPercentage = 0;
+  } //end bonus min
+  return employees[i].bonusPercentage
+} //end getBonusPercentage
 
-console.log(getBonusPercentage(2));
-
-// let totalBonus = employees.annualSalary * bonusPercentage; 
 
 //create new object
-// function EmployeeBonus(i) {
-//   this.name = employees[i].name;
-//   this.bonusPercentage = getBonusPercentage(i);//based on merit and tenure, max and min
-//   this.totalBonus = Number(employees[i].annualSalary) * employees[i].bonusPercentage
-//   this.totalCompensation = Number(employees[i].annualSalary) + totalBonus
-// }
+function EmployeeBonus(i) {
+  this.name = employees[i].name;
+  this.bonusPercentage = getBonusPercentage(i); //based on merit and tenure, max and min
+  this.totalBonus = Number(employees[i].annualSalary) * employees[i].bonusPercentage
+  this.totalCompensation = Number(employees[i].annualSalary) + this.totalBonus
+} //end EmployeeBonus
 
-
-// let realAtticus = new EmployeeBonus(employees[0]);
+for (i = 0; i < employees.length; i++) {
+  console.log(new EmployeeBonus(i));
+}
