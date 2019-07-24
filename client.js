@@ -42,10 +42,10 @@ const employees = [{
 console.log(employees);
 
 //Individual Bonus Calcuation
-function getBonusPercentage(i) {
+function getBonusPercentage(i) {//Instead of "i" any placeholder could be used
 
-  if (employees[i].reviewRating <= 2) {
-    employees[i].bonusPercentage = 0
+  if (employees[i].reviewRating <= 2) {//could have written it as the placeholder from the function, then called the function as the array-index combination. This would have allowed us to call an employee from a solitary object or a different array.
+    employees[i].bonusPercentage = 0 //could have declared a new independent variable instead of adding a property to the existing object
   } else if (employees[i].reviewRating === 3) {
     employees[i].bonusPercentage = .04
   } else if (employees[i].reviewRating === 4) {
@@ -53,16 +53,16 @@ function getBonusPercentage(i) {
   } else if (employees[i].reviewRating === 5) {
     employees[i].bonusPercentage = .10
   } //end merit bonus
-  if (employees[i].employeeNumber.length == 4) {
+  if (employees[i].employeeNumber.length == 4) {//business case: clarification would be needed if logic is needed for other lengths
     employees[i].bonusPercentage += .05
   } //end tenur bonus
-  if (Number(employees[i].annualSalary) > 65000) {
+  if (Number(employees[i].annualSalary) > 65000) {// greater-than and less-than does perform type conversion, so the Number method is not required
     employees[i].bonusPercentage -= .01
   } //end salary-based bonus decrease
   if (employees[i].bonusPercentage > .13) {
     employees[i].bonusPercentage = .13;
   } //end bonus max
-  if (employees[i].bonusPercentage < 0) {
+  if (employees[i].bonusPercentage < 0) {//in theory, this could be written as else-if, but it would be impossible for both to be true simultaneously
     employees[i].bonusPercentage = 0;
   } //end bonus min
   return employees[i].bonusPercentage
@@ -70,15 +70,15 @@ function getBonusPercentage(i) {
 
 
 //Function Logic
-function EmployeeBonus(i) {
+function EmployeeBonus(i) {//could also declare a new object-literal within the other function, then set the new object as the returner
   this.name = employees[i].name;
   this.bonusPercentage = getBonusPercentage(i); //based on merit and tenure, max and min
-  this.totalBonus = Math.round(Number(employees[i].annualSalary) * employees[i].bonusPercentage)
+  this.totalBonus = Math.round(Number(employees[i].annualSalary) * employees[i].bonusPercentage)//Math.round(parseFloat()) could also work. parseInt would not work, because it would always round down!
   this.totalCompensation = Number(employees[i].annualSalary) + this.totalBonus
 } //end EmployeeBonus
 
 //Processing Employee Bonuses
-for (i = 0; i < employees.length; i++) {
+for (i = 0; i < employees.length; i++) {//for of loop would also work, also remember to call "let", because otherwise it's a global variable
   console.log(new EmployeeBonus(i));
 }
 
